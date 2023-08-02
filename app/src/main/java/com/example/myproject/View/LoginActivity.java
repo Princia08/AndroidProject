@@ -14,7 +14,6 @@ import com.example.myproject.R;
 public class LoginActivity extends AppCompatActivity {
 
     private TextView test;
-    private Button btnLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
