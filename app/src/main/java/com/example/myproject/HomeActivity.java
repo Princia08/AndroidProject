@@ -23,6 +23,8 @@ import android.widget.Toast;
 //import com.example.myproject.view.fragment.CalendarFragment;
 import com.example.myproject.view.fragment.CalendarFragment;
 import com.example.myproject.view.fragment.HomeFragment;
+import com.example.myproject.view.fragment.NotificationFragment;
+import com.example.myproject.view.fragment.SearchFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
@@ -32,54 +34,68 @@ public class HomeActivity extends AppCompatActivity {
     FloatingActionButton fab;
     DrawerLayout drawerLayout;
     BottomNavigationView bottomNavigationView;
-    private static final int MENU_ITEM_HOME = R.id.home;
-    private static final int MENU_ITEM_SHORTS = R.id.shorts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        NavigationView navigationView = findViewById(R.id.nav_view);
+
+        if (savedInstanceState == null) {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.frame_layout, new SearchFragment())
+                    .commit();
+            navigationView.setCheckedItem(R.id.nav_home);
+        }
+        navigationView.setCheckedItem()
+
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+            int itemId = item.getItemId();
+            if (itemId == R.id.home_menu) {
+                replaceFragment(new HomeFragment());
+            } else if (itemId == R.id.search_menu) {
+                replaceFragment(new SearchFragment());
+            } else if (itemId == R.id.events_menu) {
+                replaceFragment(new CalendarFragment());
+            } else if (itemId == R.id.notif_menu) {
+                replaceFragment(new NotificationFragment());
+            }
+            return true;
+        });
+
+        init();
+        setBottomNavigation();
+    }
+
+    public void init(){
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         fab = findViewById(R.id.fab);
         drawerLayout = findViewById(R.id.drawer_layout);
-
-        NavigationView navigationView = findViewById(R.id.nav_view);
         Toolbar toolbar = findViewById(R.id.toolbar);
-
         setSupportActionBar(toolbar);
         ActionBarDrawerToggle toogle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open_nav, R.string.close_nav);
         drawerLayout.addDrawerListener(toogle);
         toogle.syncState();
 
-        if (savedInstanceState == null) {
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.frame_layout, new HomeFragment())
-                    .commit();
-            navigationView.setCheckedItem(R.id.nav_home);
-        }
-
+    }
+    private void setBottomNavigation() {
         replaceFragment(new HomeFragment());
-
         bottomNavigationView.setBackground(null);
         bottomNavigationView.setOnItemSelectedListener(item -> {
             int itemId = item.getItemId();
-
-            if (itemId == R.id.home) {
+            if (itemId == R.id.home_menu) {
                 replaceFragment(new HomeFragment());
-            } else if (itemId == R.id.shorts) {
+            } else if (itemId == R.id.search_menu) {
+                replaceFragment(new SearchFragment());
+            } else if (itemId == R.id.events_menu) {
                 replaceFragment(new CalendarFragment());
+            } else if (itemId == R.id.notif_menu) {
+                replaceFragment(new NotificationFragment());
             }
-//            else if (itemId == R.id.subscriptions) {
-//                replaceFragment(new SubscriptionFragment());
-//            } else if (itemId == R.id.library) {
-//                replaceFragment(new LibraryFragment());
-//            }
-
             return true;
         });
-
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -88,7 +104,7 @@ public class HomeActivity extends AppCompatActivity {
         });
     }
 
-    private  void replaceFragment(Fragment fragment) {
+    private void replaceFragment(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.frame_layout, fragment);
@@ -111,7 +127,7 @@ public class HomeActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 dialog.dismiss();
-                Toast.makeText(HomeActivity.this,"Upload a Video is clicked",Toast.LENGTH_SHORT).show();
+                Toast.makeText(HomeActivity.this, "Publication de photo...", Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -121,7 +137,7 @@ public class HomeActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 dialog.dismiss();
-                Toast.makeText(HomeActivity.this,"Create a short is Clicked",Toast.LENGTH_SHORT).show();
+                Toast.makeText(HomeActivity.this, "Creation de video", Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -131,7 +147,7 @@ public class HomeActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 dialog.dismiss();
-                Toast.makeText(HomeActivity.this,"Go live is Clicked",Toast.LENGTH_SHORT).show();
+                Toast.makeText(HomeActivity.this, "Vers le fragment de recherche", Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -144,7 +160,7 @@ public class HomeActivity extends AppCompatActivity {
         });
 
         dialog.show();
-        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
         dialog.getWindow().setGravity(Gravity.BOTTOM);
