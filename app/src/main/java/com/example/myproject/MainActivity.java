@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.myproject.View.LoginActivity;
+//import com.example.myproject.view.LoginActivity;
 import com.example.myproject.services.SiteService;
 
 public class MainActivity extends AppCompatActivity {
@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
             // Perform login process here (e.g., check credentials against a database or API)
             // For this simple example, we'll just display a success message.
             // Toast.makeText(this, "Login successfull!", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(this, LoginActivity.class);
+            Intent intent = new Intent(this, HomeActivity.class);
             startActivity(intent);
         }
     }

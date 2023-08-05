@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/home"
+        android:title="Accueil"
+        android:icon="@drawable/baseline_home_24"/>
+
+    <item
+        android:id="@+id/shorts"
+        android:title="Recherche"
+        android:icon="@drawable/baseline_search_24"
+        />
+
+    <item
+        android:title=""/>
+
+    <item
+        android:id="@+id/subscriptions"
+        android:title="Events"
+        android:icon="@drawable/baseline_calendar_today_24" />
+    <item
+        android:id="@+id/library"
+        android:title="Notifications"
+        android:titleCondensed="Notifs"
+        android:icon="@drawable/baseline_notifications_24"
+        android:textSize="12sp" />
+
+</menu>
