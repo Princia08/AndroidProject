@@ -37,9 +37,11 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity> <!-- Login Activity -->
-        <activity android:name=".View.LoginActivity" />
-        <activity android:name=".View.SignupActivity" />
+        </activity>
+
+        <!-- Login Activity -->
+        <activity android:name=".view.LoginActivity" />
+        <activity android:name=".view.SignupActivity" />
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
