@@ -14,7 +14,6 @@ import com.example.myproject.R;
 public class LoginActivity extends AppCompatActivity {
 
     private TextView test;
-    private Button btnLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +25,6 @@ public class LoginActivity extends AppCompatActivity {
 
     private void show() {
         String testt = test.getText().toString();
-        Toast.makeText(this, testt, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, testt, Toast.LENGTH_SHORT).show();
     }
 }
