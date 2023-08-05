@@ -10,12 +10,13 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.myproject.View.LoginActivity;
+import com.example.myproject.services.SiteService;
 
 public class MainActivity extends AppCompatActivity {
 
     private EditText userText, passwordText;
     private Button btnLogin;
-
+    public SiteService service;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,13 +24,15 @@ public class MainActivity extends AppCompatActivity {
         userText = findViewById(R.id.etUsername);
         passwordText = findViewById(R.id.etPassword);
         btnLogin = findViewById(R.id.btnLogin);
-
+        this.service = new SiteService();
         btnLogin.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 login();
             }
+
+
         });
     }
 

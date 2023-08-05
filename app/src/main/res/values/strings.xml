@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">MyProject</string>
+    <string name="app_name">Mada Travel</string>
+    <string name="api_base_url">http://localhost:8080/api/</string>
 </resources>
