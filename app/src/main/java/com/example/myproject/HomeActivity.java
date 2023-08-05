@@ -49,7 +49,7 @@ public class HomeActivity extends AppCompatActivity {
                     .commit();
             navigationView.setCheckedItem(R.id.nav_home);
         }
-        navigationView.setCheckedItem()
+        //navigationView.setCheckedItem()
 
         bottomNavigationView.setOnItemSelectedListener(item -> {
             int itemId = item.getItemId();
