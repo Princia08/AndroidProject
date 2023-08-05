@@ -25,6 +25,6 @@ public class LoginActivity extends AppCompatActivity {
 
     private void show() {
         String testt = test.getText().toString();
-        Toast.makeText(this, testt, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, testt, Toast.LENGTH_SHORT).show();
     }
 }

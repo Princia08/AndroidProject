@@ -1,7 +1,6 @@
 package com.example.myproject.controller;
 import com.example.myproject.model.LoginCallback;
 import com.example.myproject.model.UserModel;
-import android.util.Log;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -11,20 +10,22 @@ import java.io.IOException;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;
-import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class LoginController {
+public class SignupController {
     OkHttpClient client = new OkHttpClient();
 
-    public void Login(String mail, String password, LoginCallback callback) {
-        String apiUrl = "http://172.20.10.2:8080/api/user/auth";
+    public void Signup(String nom, String prenom, String mail, String password, String adresse, LoginCallback callback) {
+        String apiUrl = "http://172.20.10.2:8080/api/user/signup";
         RequestBody body = new FormBody.Builder()
+                .add("nom", nom)
+                .add("prenom", prenom)
+                .add("adresse", adresse)
                 .add("mail", mail)
-                .add("password", password)
+                .add("mdp", password)
                 .build();
 
         Request request = new Request.Builder()
@@ -37,6 +38,7 @@ public class LoginController {
                 // Handle network errors
                 callback.onFailure(e);
             }
+
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 if (response.isSuccessful()) {
@@ -50,14 +52,9 @@ public class LoginController {
                         callback.onFailure(e);
                     }
                 } else {
-                    try {
-                        callback.onFailure(new Exception((new JSONObject(response.body().string())).optString("message")));
-                    } catch (JSONException e) {
-                        throw new RuntimeException(e);
-                    }
+                    callback.onFailure(new Exception(response.message()));
                 }
             }
         });
-        //return userResponse;
     }
 }
