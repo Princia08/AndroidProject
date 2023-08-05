@@ -68,7 +68,7 @@ public class SignupActivity extends AppCompatActivity {
                 if(nom.isEmpty() || prenom.isEmpty() || adresse.isEmpty() || mail.isEmpty() || password.isEmpty())
                     Toast.makeText(signupActivity, "Veuillez remplir tous les champs!", Toast.LENGTH_SHORT).show();
                 else {
-                    signupController.Signup(nom, prenom, adresse, mail, password, new LoginCallback() {
+                    signupController.Signup(nom, prenom, mail, password, adresse, new LoginCallback() {
                         @Override
                         public void onSuccess(UserModel user) {
                             signupActivity.runOnUiThread(new Runnable() {
