@@ -1,4 +1,4 @@
-package com.example.myproject.View;
+package com.example.myproject.view;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,9 +11,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.myproject.MainActivity;
 import com.example.myproject.R;
-import com.example.myproject.controller.LoginController;
 import com.example.myproject.controller.SignupController;
 import com.example.myproject.model.LoginCallback;
 import com.example.myproject.model.UserModel;
