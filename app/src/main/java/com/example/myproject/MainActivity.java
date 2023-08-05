@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         Toast.makeText(mainActivity, "Vous êtes connectés!", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(mainActivity, LoginActivity.class);
+                        Intent intent = new Intent(mainActivity, HomeActivity.class);
                         startActivity(intent);
                     }
                 });

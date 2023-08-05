@@ -49,21 +49,6 @@ public class HomeActivity extends AppCompatActivity {
                     .commit();
             navigationView.setCheckedItem(R.id.nav_home);
         }
-        //navigationView.setCheckedItem()
-
-        bottomNavigationView.setOnItemSelectedListener(item -> {
-            int itemId = item.getItemId();
-            if (itemId == R.id.home_menu) {
-                replaceFragment(new HomeFragment());
-            } else if (itemId == R.id.search_menu) {
-                replaceFragment(new SearchFragment());
-            } else if (itemId == R.id.events_menu) {
-                replaceFragment(new CalendarFragment());
-            } else if (itemId == R.id.notif_menu) {
-                replaceFragment(new NotificationFragment());
-            }
-            return true;
-        });
 
         init();
         setBottomNavigation();
