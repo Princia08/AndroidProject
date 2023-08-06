@@ -40,8 +40,8 @@
         </activity>
 
         <!-- Login Activity -->
-        <activity android:name=".view.LoginActivity" />
-        <activity android:name=".view.SignupActivity" />
+        <activity android:name=".vieww.LoginActivity" />
+        <activity android:name=".vieww.SignupActivity" />
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

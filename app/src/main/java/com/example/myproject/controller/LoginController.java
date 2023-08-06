@@ -1,4 +1,5 @@
 package com.example.myproject.controller;
+import com.example.myproject.model.BaseUrl;
 import com.example.myproject.model.LoginCallback;
 import com.example.myproject.model.UserModel;
 import android.util.Log;
@@ -19,9 +20,10 @@ import okhttp3.Response;
 
 public class LoginController {
     OkHttpClient client = new OkHttpClient();
+    String baseUrl = new BaseUrl().getValue();
 
     public void Login(String mail, String password, LoginCallback callback) {
-        String apiUrl = "http://172.22.12.236:8080/api/user/auth";
+        String apiUrl = baseUrl+"/user/auth";
         RequestBody body = new FormBody.Builder()
                 .add("mail", mail)
                 .add("password", password)

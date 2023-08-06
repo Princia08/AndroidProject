@@ -1,4 +1,4 @@
-package com.example.myproject.view;
+package com.example.myproject.vieww;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,9 +11,9 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.myproject.HomeActivity;
 import com.example.myproject.MainActivity;
 import com.example.myproject.R;
-import com.example.myproject.controller.LoginController;
 import com.example.myproject.controller.SignupController;
 import com.example.myproject.model.LoginCallback;
 import com.example.myproject.model.UserModel;
@@ -75,7 +75,7 @@ public class SignupActivity extends AppCompatActivity {
                                 @Override
                                 public void run() {
                                     Toast.makeText(signupActivity, "Vous êtes bien inscrit(e)s!", Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(signupActivity, LoginActivity.class);
+                                    Intent intent = new Intent(signupActivity, HomeActivity.class);
                                     startActivity(intent);
                                 }
                             });
