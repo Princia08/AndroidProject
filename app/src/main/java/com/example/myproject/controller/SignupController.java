@@ -1,5 +1,4 @@
 package com.example.myproject.controller;
-import com.example.myproject.model.BaseUrl;
 import com.example.myproject.model.LoginCallback;
 import com.example.myproject.model.UserModel;
 
@@ -18,10 +17,9 @@ import okhttp3.Response;
 
 public class SignupController {
     OkHttpClient client = new OkHttpClient();
-    String baseUrl = new BaseUrl().getValue();
 
     public void Signup(String nom, String prenom, String mail, String password, String adresse, LoginCallback callback) {
-        String apiUrl = baseUrl+"/user/signup";
+        String apiUrl = "http://172.20.10.2:8080/api/user/signup";
         RequestBody body = new FormBody.Builder()
                 .add("nom", nom)
                 .add("prenom", prenom)

@@ -1,6 +1,5 @@
 package com.example.myproject.controller;
 
-import com.example.myproject.model.BaseUrl;
 import com.example.myproject.model.Site;
 
 import org.json.JSONArray;
@@ -18,11 +17,10 @@ import okhttp3.Response;
 
 public class SiteController {
     OkHttpClient client = new OkHttpClient();
-    String baseUrl = new BaseUrl().getValue();
 
     // Fonction pour récupérer la liste des sites
     public void getSiteList(SiteListCallback callback) {
-        String apiUrl = baseUrl+"/site/";
+        String apiUrl = "http://172.22.12.236:8080/api/site/";
 
         Request request = new Request.Builder()
                 .url(apiUrl)
