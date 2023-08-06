@@ -8,6 +8,8 @@ import android.os.Bundle;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +19,12 @@ import android.widget.Button;
 import com.example.myproject.HomeActivity;
 import com.example.myproject.MainActivity;
 import com.example.myproject.R;
+import com.example.myproject.controller.EventController;
+import com.example.myproject.controller.EventSiteCallback;
+import com.example.myproject.model.Event;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -34,6 +42,9 @@ public class NotificationFragment extends Fragment {
     private String mParam1;
     private String mParam2;
     private Button notifyBtn;
+    EventController eventController = new EventController();
+    List<Event> events = new ArrayList<>();
+    RecyclerView recyclerView;
 
     public NotificationFragment() {
         // Required empty public constructor
@@ -60,31 +71,63 @@ public class NotificationFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view =  inflater.inflate(R.layout.fragment_notification, container, false);
+        View view = inflater.inflate(R.layout.fragment_notification, container, false);
+//        initEventTomorrow();
+        Event event1 = new Event();
 
-        notifyBtn = view.findViewById(R.id.pushNotif);
+        event1.setLabel("Festival des Lémuriens");
+        event1.setDescription("Un festival célébrant la diversité des lémuriens malgaches et la préservation de leur habitat naturel.");
+        event1.setDate_event("2023-08-06");
+        events.add(event1);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
-            NotificationChannel channel =  new NotificationChannel("My Notification","My Notification", NotificationManager.IMPORTANCE_DEFAULT);
+        Event event2 = new Event();
+        event2.setLabel("Festival de la Vanille");
+        event2.setDescription("Un événement dédié à la célèbre vanille de Madagascar, mettant en avant la culture, la cuisine et les utilisations de la vanille.");
+        event2.setDate_event("2023-08-07");
+        events.add(event2);
+
+        recyclerView = view.findViewById(R.id.recyclerview_notifications);
+        recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
+        recyclerView.setAdapter(new NotifAdapter(requireContext(), events));
+        return view;
+    }
+
+    public void initEventTomorrow() {
+        eventController.getEventTomorrow(new EventSiteCallback() {
+            @Override
+            public void onSuccess(List<Event> events) {
+                for (Event event : events) {
+                    Event event1 = new Event(
+                            event.getLabel(),
+                            event.getDescription(),
+                            event.getDate_event()
+                    );
+                    events.add(event1);
+                }
+            }
+
+            @Override
+            public void onFailure(Throwable error) {
+
+            }
+        });
+    }
+
+    public void pushNotification() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel("My Notification", "My Notification", NotificationManager.IMPORTANCE_DEFAULT);
             NotificationManager notificationManager = requireContext().getSystemService(NotificationManager.class);
             notificationManager.createNotificationChannel(channel);
         }
 
-        notifyBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                NotificationCompat.Builder  builder= new NotificationCompat.Builder(getContext(),"My Notification");
-                builder.setContentTitle("Mada Travel");
-                builder.setContentText("De ahona zanjy");
-                builder.setSmallIcon(R.drawable.baseline_event_available_24);
-                builder.setAutoCancel(true);
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(getContext(), "My Notification");
+        builder.setContentTitle("Mada Travel");
+        builder.setContentText("De ahona zanjy");
+        builder.setSmallIcon(R.drawable.baseline_event_available_24);
+        builder.setAutoCancel(true);
 
-                NotificationManagerCompat notificationCompat = NotificationManagerCompat.from(getContext());
-                notificationCompat.notify(1,builder.build());
-
-            }
-        });
-
-        return view;
+        NotificationManagerCompat notificationCompat = NotificationManagerCompat.from(getContext());
+        notificationCompat.notify(1, builder.build());
     }
+
 }
