@@ -2,6 +2,7 @@ package com.example.myproject.view.fragment;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -11,10 +12,12 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.myproject.HomeActivity;
 import com.example.myproject.MainActivity;
@@ -47,7 +50,6 @@ public class NotificationFragment extends Fragment {
     RecyclerView recyclerView;
 
     public NotificationFragment() {
-        // Required empty public constructor
     }
 
     public static NotificationFragment newInstance(String param1, String param2) {
@@ -72,43 +74,77 @@ public class NotificationFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_notification, container, false);
-//        initEventTomorrow();
-        Event event1 = new Event();
-
-        event1.setLabel("Festival des Lémuriens");
-        event1.setDescription("Un festival célébrant la diversité des lémuriens malgaches et la préservation de leur habitat naturel.");
-        event1.setDate_event("2023-08-06");
-        events.add(event1);
-
-        Event event2 = new Event();
-        event2.setLabel("Festival de la Vanille");
-        event2.setDescription("Un événement dédié à la célèbre vanille de Madagascar, mettant en avant la culture, la cuisine et les utilisations de la vanille.");
-        event2.setDate_event("2023-08-07");
-        events.add(event2);
-
         recyclerView = view.findViewById(R.id.recyclerview_notifications);
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
-        recyclerView.setAdapter(new NotifAdapter(requireContext(), events));
-        return view;
-    }
-
-    public void initEventTomorrow() {
         eventController.getEventTomorrow(new EventSiteCallback() {
             @Override
-            public void onSuccess(List<Event> events) {
-                for (Event event : events) {
+            public void onSuccess(List<Event> fecthedEvents) {
+                for (Event event : fecthedEvents) {
                     Event event1 = new Event(
                             event.getLabel(),
                             event.getDescription(),
                             event.getDate_event()
                     );
                     events.add(event1);
+                    Log.d("event : ", String.valueOf(event1.getLabel()));
+                    Log.d("boucle : ", String.valueOf(events.size()));
                 }
+                Log.d("event ******************", String.valueOf(events.size()));
             }
 
             @Override
             public void onFailure(Throwable error) {
+//                getActivity().runOnUiThread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        Log.d("error **************************", String.valueOf(error));
+//                        Toast.makeText(getContext(), "Erreur : " + error, Toast.LENGTH_SHORT).show();
+//                        Intent intent = new Intent(getContext(), HomeActivity.class);
+//                        startActivity(intent);
+//                    }
+//                });
+            }
+        });
+        Log.d("en dehors ***************************", String.valueOf(events.size()));
+        recyclerView.setAdapter(new NotifAdapter(requireContext(), events));
 
+//        Event event1 = new Event();
+//
+//        event1.setLabel("Festival des Lémuriens");
+//        event1.setDescription("Un festival célébrant la diversité des lémuriens malgaches et la préservation de leur habitat naturel.");
+//        event1.setDate_event("2023-08-06");
+//        events.add(event1);
+//
+//        Event event2 = new Event();
+//        event2.setLabel("Festival de la Vanille");
+//        event2.setDescription("Un événement dédié à la célèbre vanille de Madagascar, mettant en avant la culture, la cuisine et les utilisations de la vanille.");
+//        event2.setDate_event("2023-08-07");
+//        events.add(event2);
+        return view;
+    }
+
+    public void initEventTomorrow(List<Event> events) {
+        eventController.getEventTomorrow(new EventSiteCallback() {
+            @Override
+            public void onSuccess(List<Event> fecthedEvents) {
+                for (Event event : fecthedEvents) {
+                    Event event1 = new Event(
+                            event.getLabel(),
+                            event.getDescription(),
+                            event.getDate_event()
+                    );
+                    events.add(event1);
+                    Log.d("event : ", String.valueOf(event1.getLabel()));
+                    Log.d("boucle : ", String.valueOf(events.size()));
+                }
+                Log.d("event ******************", String.valueOf(events.size()));
+            }
+
+            @Override
+            public void onFailure(Throwable error) {
+                Toast.makeText(getContext(), "Erreur : " + error, Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getContext(), HomeActivity.class);
+                startActivity(intent);
             }
         });
     }
