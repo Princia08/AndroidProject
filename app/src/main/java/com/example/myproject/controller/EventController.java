@@ -2,6 +2,7 @@ package com.example.myproject.controller;
 
 import android.view.inputmethod.InputMethodSession;
 
+import com.example.myproject.model.BaseUrl;
 import com.example.myproject.model.Event;
 import com.example.myproject.model.Site;
 
@@ -20,9 +21,11 @@ import okhttp3.Response;
 
 public class EventController {
     OkHttpClient client = new OkHttpClient();
+    BaseUrl baseUrl;
 
     public void getEventTomorrow(EventSiteCallback callback) {
-        String apiUrl = "http://172.22.12.236:8080/api/event/tomorrow";
+        //String apiUrl = "http://172.22.12.236:8080/api/event/tomorrow";
+        String apiUrl = baseUrl+"/event/tomorrow";
 
         Request request = new Request.Builder()
                 .url(apiUrl)
