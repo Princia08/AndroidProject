@@ -9,11 +9,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.myproject.R;
 import com.example.myproject.controller.EventController;
 import com.example.myproject.controller.EventSiteCallback;
 import com.example.myproject.model.Event;
+import com.example.myproject.view.fragment.home.SiteAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,9 +39,10 @@ public class CalendarFragment extends Fragment {
     EventController eventController = new EventController();
     List<Event> events = new ArrayList<>();
     RecyclerView recyclerView;
+
     public CalendarFragment() {
-        // Required empty public constructor
     }
+
     public static CalendarFragment newInstance(String param1, String param2) {
         CalendarFragment fragment = new CalendarFragment();
         Bundle args = new Bundle();
@@ -61,27 +64,15 @@ public class CalendarFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-//        initAllCalendar();
-        Event event1 = new Event();
-
-        event1.setLabel("Festival des Lémuriens");
-        event1.setDescription("Un festival célébrant la diversité des lémuriens malgaches et la préservation de leur habitat naturel.");
-        event1.setDate_event("2023-08-06");
-        events.add(event1);
-
-        Event event2 = new Event();
-        event2.setLabel("Festival de la Vanille");
-        event2.setDescription("Un événement dédié à la célèbre vanille de Madagascar, mettant en avant la culture, la cuisine et les utilisations de la vanille.");
-        event2.setDate_event("2023-08-07");
-        events.add(event2);
-
+        initAllCalendar();
         View view = inflater.inflate(R.layout.fragment_calendar, container, false);
         recyclerView = view.findViewById(R.id.recyclerview_calendrier);
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
         recyclerView.setAdapter(new CalendarAdapter(requireContext(), events));
         return view;
     }
-    public void initAllCalendar(){
+
+    public void initAllCalendar() {
         eventController.getAll(new EventSiteCallback() {
             @Override
             public void onSuccess(List<Event> fecthedEvents) {
@@ -93,14 +84,30 @@ public class CalendarFragment extends Fragment {
                     );
                     events.add(event1);
                 }
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        updateAdapter();
+                    }
+                });
             }
 
             @Override
             public void onFailure(Throwable error) {
-//                Toast.makeText(getContext(), "Erreur : " + error, Toast.LENGTH_SHORT).show();
-//                Intent intent = new Intent(getContext(), HomeActivity.class);
-//                startActivity(intent);
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
+    }
+
+    private void updateAdapter() {
+        if (getActivity() != null) {
+            CalendarAdapter adapter = new CalendarAdapter(requireContext(), events);
+            recyclerView.setAdapter(adapter);
+        }
     }
 }

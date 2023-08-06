@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.myproject.R;
 import com.example.myproject.controller.SiteController;
@@ -58,9 +59,7 @@ public class HomeFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-        initListSite();
-        Log.d("on create : ********************","Initialisation de on Create ");
-        Log.d("Taille liste après on create : ********************","Taille "+sites.size());
+
     }
 
     @Override
@@ -70,10 +69,7 @@ public class HomeFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
         recyclerView.setAdapter(new SiteAdapter(requireContext(), sites));
-
-        Log.d("on create view : ********************","Initialisation de on CreateView ");
-        Log.d("Taille liste après on createView : ********************","Taille "+sites.size());
-
+        initListSite();
         return view;
     }
 
@@ -90,18 +86,31 @@ public class HomeFragment extends Fragment {
                     );
                     sites.add(site);
                 }
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        updateAdapter();
+                    }
+                });
             }
+
             @Override
             public void onFailure(Throwable error) {
-                Log.d("Error : ********************", String.valueOf(error));
-//                homeActivity.runOnUiThread(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        Toast.makeText(homeActivity, error.getMessage(), Toast.LENGTH_SHORT).show();
-//                    }
-//                });
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
+    }
+
+    private void updateAdapter() {
+        if (getActivity() != null) {
+            SiteAdapter adapter = new SiteAdapter(requireContext(), sites);
+            recyclerView.setAdapter(adapter);
+        }
     }
 
     public void testFiltre() {

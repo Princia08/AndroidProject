@@ -24,6 +24,7 @@ import com.example.myproject.R;
 import com.example.myproject.controller.EventController;
 import com.example.myproject.controller.EventSiteCallback;
 import com.example.myproject.model.Event;
+import com.example.myproject.view.fragment.home.SiteAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -72,57 +73,17 @@ public class NotificationFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        initEventTomorrow();
+
         View view = inflater.inflate(R.layout.fragment_notification, container, false);
         recyclerView = view.findViewById(R.id.recyclerview_notifications);
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
-//        eventController.getEventTomorrow(new EventSiteCallback() {
-//            @Override
-//            public void onSuccess(List<Event> fecthedEvents) {
-//                for (Event event : fecthedEvents) {
-//                    Event event1 = new Event(
-//                            event.getLabel(),
-//                            event.getDescription(),
-//                            event.getDate_event()
-//                    );
-//                    events.add(event1);
-//                    Log.d("event : ", String.valueOf(event1.getLabel()));
-//                    Log.d("boucle : ", String.valueOf(events.size()));
-//                }
-//                Log.d("event ******************", String.valueOf(events.size()));
-//            }
-//
-//            @Override
-//            public void onFailure(Throwable error) {
-////                getActivity().runOnUiThread(new Runnable() {
-////                    @Override
-////                    public void run() {
-////                        Log.d("error **************************", String.valueOf(error));
-////                        Toast.makeText(getContext(), "Erreur : " + error, Toast.LENGTH_SHORT).show();
-////                        Intent intent = new Intent(getContext(), HomeActivity.class);
-////                        startActivity(intent);
-////                    }
-////                });
-//            }
-//        });
-        Log.d("en dehors ***************************", String.valueOf(events.size()));
         recyclerView.setAdapter(new NotifAdapter(requireContext(), events));
 
-//        Event event1 = new Event();
-//
-//        event1.setLabel("Festival des Lémuriens");
-//        event1.setDescription("Un festival célébrant la diversité des lémuriens malgaches et la préservation de leur habitat naturel.");
-//        event1.setDate_event("2023-08-06");
-//        events.add(event1);
-//
-//        Event event2 = new Event();
-//        event2.setLabel("Festival de la Vanille");
-//        event2.setDescription("Un événement dédié à la célèbre vanille de Madagascar, mettant en avant la culture, la cuisine et les utilisations de la vanille.");
-//        event2.setDate_event("2023-08-07");
-//        events.add(event2);
         return view;
     }
 
-    public void initEventTomorrow(List<Event> events) {
+    public void initEventTomorrow() {
         eventController.getEventTomorrow(new EventSiteCallback() {
             @Override
             public void onSuccess(List<Event> fecthedEvents) {
@@ -133,21 +94,33 @@ public class NotificationFragment extends Fragment {
                             event.getDate_event()
                     );
                     events.add(event1);
-                    Log.d("event : ", String.valueOf(event1.getLabel()));
-                    Log.d("boucle : ", String.valueOf(events.size()));
                 }
-                Log.d("event ******************", String.valueOf(events.size()));
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        updateAdapter();
+                    }
+                });
             }
 
             @Override
             public void onFailure(Throwable error) {
-                Toast.makeText(getContext(), "Erreur : " + error, Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getContext(), HomeActivity.class);
-                startActivity(intent);
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
     }
 
+    private void updateAdapter() {
+        if (getActivity() != null) {
+            NotifAdapter adapter = new NotifAdapter(requireContext(),events);
+            recyclerView.setAdapter(adapter);
+        }
+    }
     public void pushNotification() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationChannel channel = new NotificationChannel("My Notification", "My Notification", NotificationManager.IMPORTANCE_DEFAULT);
