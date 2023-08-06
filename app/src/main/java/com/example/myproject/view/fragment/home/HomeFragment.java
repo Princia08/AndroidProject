@@ -3,6 +3,7 @@ package com.example.myproject.view.fragment.home;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,6 +18,7 @@ import com.example.myproject.controller.SiteController;
 import com.example.myproject.controller.SiteListCallback;
 import com.example.myproject.model.Site;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +27,7 @@ import java.util.List;
  * Use the {@link HomeFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements SiteAdapter.OnSiteItemClickListener{
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -68,8 +70,11 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         recyclerView = view.findViewById(R.id.recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
-        recyclerView.setAdapter(new SiteAdapter(requireContext(), sites));
+        SiteAdapter adapter = new SiteAdapter(requireContext(), sites);
+        adapter.setOnSiteItemClickListener(this);
+        recyclerView.setAdapter(adapter);
         initListSite();
+
         return view;
     }
 
@@ -108,8 +113,10 @@ public class HomeFragment extends Fragment {
 
     private void updateAdapter() {
         if (getActivity() != null) {
-            SiteAdapter adapter = new SiteAdapter(requireContext(), sites);
-            recyclerView.setAdapter(adapter);
+//            SiteAdapter adapter = new SiteAdapter(requireContext(), sites);
+//            adapter.setOnSiteItemClickListener(this);
+//            recyclerView.setAdapter(adapter);
+            recyclerView.getAdapter().notifyDataSetChanged();
         }
     }
 
@@ -119,5 +126,18 @@ public class HomeFragment extends Fragment {
 //        ArrayAdapter<String> adapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_spinner_item, filterOptions);
 //        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 //        filterSpinner.setAdapter(adapter);
+    }
+
+    public void onSiteItemClick(Site site) {
+        SiteDetailFragment fragment = new SiteDetailFragment();
+//        Bundle args = new Bundle();
+//        args.putSerializable("selectedSite", (Serializable) site);
+//        fragment.setArguments(args);
+        Log.d("Clickeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeed ","click");
+        // Perform fragment transaction to show the detail fragment
+//        FragmentTransaction transaction = requireActivity().getSupportFragmentManager().beginTransaction();
+//        transaction.replace(R.id.recyclerview, fragment);
+//        transaction.addToBackStack(null);
+//        transaction.commit();
     }
 }
