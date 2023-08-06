@@ -18,6 +18,13 @@ public class Site {
         this.video = video;
     }
 
+    public Site(String label, String description, String image, String video) {
+        this.label = label;
+        this.description = description;
+        this.image = image;
+        this.video = video;
+    }
+
     public String getId() {
         return id;
     }
