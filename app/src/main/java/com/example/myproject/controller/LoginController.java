@@ -21,7 +21,7 @@ public class LoginController {
     OkHttpClient client = new OkHttpClient();
 
     public void Login(String mail, String password, LoginCallback callback) {
-        String apiUrl = "http://172.20.10.2:8080/api/user/auth";
+        String apiUrl = "http://172.22.12.236:8080/api/user/auth";
         RequestBody body = new FormBody.Builder()
                 .add("mail", mail)
                 .add("password", password)

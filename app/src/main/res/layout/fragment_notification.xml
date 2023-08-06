@@ -12,4 +12,10 @@
         android:text="Notifications Fragment"
         android:gravity="center"/>
 
+    <Button
+        android:id="@+id/pushNotif"
+        android:layout_width="389dp"
+        android:layout_height="wrap_content"
+        android:text="Button" />
+
 </FrameLayout>

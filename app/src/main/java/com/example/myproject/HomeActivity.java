@@ -3,14 +3,19 @@ package com.example.myproject;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.app.Dialog;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
@@ -52,6 +57,24 @@ public class HomeActivity extends AppCompatActivity {
 
         init();
         setBottomNavigation();
+        pushNotification();
+
+    }
+    public void pushNotification(){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            NotificationChannel channel =  new NotificationChannel("My Notification","My Notification", NotificationManager.IMPORTANCE_DEFAULT);
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
+
+        NotificationCompat.Builder  builder= new NotificationCompat.Builder(HomeActivity.this,"My Notification");
+        builder.setContentTitle("Mada Travel");
+        builder.setContentText("Bienvenue sur l'application Mada Travel !");
+        builder.setSmallIcon(R.drawable.baseline_event_available_24);
+        builder.setAutoCancel(true);
+
+        NotificationManagerCompat notificationCompat = NotificationManagerCompat.from(HomeActivity.this);
+        notificationCompat.notify(1,builder.build());
     }
 
     public void init(){
