@@ -3,19 +3,52 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".view.fragment.HomeFragment">
 
     <!-- TODO: Update blank fragment layout -->
 
 
+    <!--    <TextView-->
+    <!--        android:id="@+id/textView3"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:text="List des Sites touristiques"-->
+    <!--        android:textSize="18dp"-->
+    <!--        android:layout_centerHorizontal="true"-->
+    <!--        />-->
 <!--    <TextView-->
-<!--        android:id="@+id/textView3"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Filtrer par"-->
+<!--        android:textSize="16sp"-->
+<!--        android:textStyle="bold" />-->
+
+<!--    &lt;!&ndash; Liste déroulante &ndash;&gt;-->
+<!--    <Spinner-->
+<!--        android:id="@+id/filter_spinner"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="8dp" />-->
+
+<!--    <ImageView-->
+<!--        android:id="@+id/bottom_icon"-->
+<!--        android:layout_width="32dp"-->
+<!--        android:layout_height="32dp"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        android:src="@drawable/baseline_add_circle_24" /> &lt;!&ndash; Remplacez par la source de votre icône &ndash;&gt;-->
+
+<!--    <TextView-->
 <!--        android:layout_width="wrap_content"-->
 <!--        android:layout_height="wrap_content"-->
-<!--        android:text="List des Sites touristiques"-->
-<!--        android:textSize="18dp"-->
-<!--        android:layout_centerHorizontal="true"-->
-<!--        />-->
+<!--        app:layout_constraintBottom_toTopOf="@id/bottom_icon"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        android:text="C'est tout pour aujourd'hui"-->
+<!--        android:textSize="14sp"-->
+<!--        android:textColor="#888888" />-->
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview"
