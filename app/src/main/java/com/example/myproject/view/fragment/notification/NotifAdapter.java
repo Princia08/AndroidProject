@@ -1,4 +1,4 @@
-package com.example.myproject.view.fragment;
+package com.example.myproject.view.fragment.notification;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myproject.R;
 import com.example.myproject.model.Event;
-import com.example.myproject.model.Site;
 
 import java.util.List;
 

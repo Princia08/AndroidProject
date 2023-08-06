@@ -1,4 +1,4 @@
-package com.example.myproject.view.fragment;
+package com.example.myproject.view.fragment.home;
 
 import android.content.Context;
 import android.view.LayoutInflater;

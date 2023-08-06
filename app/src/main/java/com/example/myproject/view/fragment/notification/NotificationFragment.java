@@ -1,4 +1,4 @@
-package com.example.myproject.view.fragment;
+package com.example.myproject.view.fragment.notification;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -20,7 +20,6 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.myproject.HomeActivity;
-import com.example.myproject.MainActivity;
 import com.example.myproject.R;
 import com.example.myproject.controller.EventController;
 import com.example.myproject.controller.EventSiteCallback;
@@ -76,35 +75,35 @@ public class NotificationFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_notification, container, false);
         recyclerView = view.findViewById(R.id.recyclerview_notifications);
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
-        eventController.getEventTomorrow(new EventSiteCallback() {
-            @Override
-            public void onSuccess(List<Event> fecthedEvents) {
-                for (Event event : fecthedEvents) {
-                    Event event1 = new Event(
-                            event.getLabel(),
-                            event.getDescription(),
-                            event.getDate_event()
-                    );
-                    events.add(event1);
-                    Log.d("event : ", String.valueOf(event1.getLabel()));
-                    Log.d("boucle : ", String.valueOf(events.size()));
-                }
-                Log.d("event ******************", String.valueOf(events.size()));
-            }
-
-            @Override
-            public void onFailure(Throwable error) {
-//                getActivity().runOnUiThread(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        Log.d("error **************************", String.valueOf(error));
-//                        Toast.makeText(getContext(), "Erreur : " + error, Toast.LENGTH_SHORT).show();
-//                        Intent intent = new Intent(getContext(), HomeActivity.class);
-//                        startActivity(intent);
-//                    }
-//                });
-            }
-        });
+//        eventController.getEventTomorrow(new EventSiteCallback() {
+//            @Override
+//            public void onSuccess(List<Event> fecthedEvents) {
+//                for (Event event : fecthedEvents) {
+//                    Event event1 = new Event(
+//                            event.getLabel(),
+//                            event.getDescription(),
+//                            event.getDate_event()
+//                    );
+//                    events.add(event1);
+//                    Log.d("event : ", String.valueOf(event1.getLabel()));
+//                    Log.d("boucle : ", String.valueOf(events.size()));
+//                }
+//                Log.d("event ******************", String.valueOf(events.size()));
+//            }
+//
+//            @Override
+//            public void onFailure(Throwable error) {
+////                getActivity().runOnUiThread(new Runnable() {
+////                    @Override
+////                    public void run() {
+////                        Log.d("error **************************", String.valueOf(error));
+////                        Toast.makeText(getContext(), "Erreur : " + error, Toast.LENGTH_SHORT).show();
+////                        Intent intent = new Intent(getContext(), HomeActivity.class);
+////                        startActivity(intent);
+////                    }
+////                });
+//            }
+//        });
         Log.d("en dehors ***************************", String.valueOf(events.size()));
         recyclerView.setAdapter(new NotifAdapter(requireContext(), events));
 

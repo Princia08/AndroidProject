@@ -25,11 +25,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-//import com.example.myproject.view.fragment.CalendarFragment;
-import com.example.myproject.view.fragment.CalendarFragment;
-import com.example.myproject.view.fragment.HomeFragment;
-import com.example.myproject.view.fragment.NotificationFragment;
-import com.example.myproject.view.fragment.SearchFragment;
+//import com.example.myproject.view.fragment.calendar.CalendarFragment;
+import com.example.myproject.view.fragment.calendar.CalendarFragment;
+import com.example.myproject.view.fragment.home.HomeFragment;
+import com.example.myproject.view.fragment.notification.NotificationFragment;
+import com.example.myproject.view.fragment.search.SearchFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;

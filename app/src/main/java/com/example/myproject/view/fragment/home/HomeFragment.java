@@ -1,6 +1,5 @@
-package com.example.myproject.view.fragment;
+package com.example.myproject.view.fragment.home;
 
-import android.content.ClipData;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -11,11 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
-import android.widget.Toast;
 
-import com.example.myproject.HomeActivity;
 import com.example.myproject.R;
 import com.example.myproject.controller.SiteController;
 import com.example.myproject.controller.SiteListCallback;
@@ -63,18 +58,21 @@ public class HomeFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
+        initListSite();
+        Log.d("on create : ********************","Initialisation de on Create ");
+        Log.d("Taille liste après on create : ********************","Taille "+sites.size());
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-        initListSite();
-
         recyclerView = view.findViewById(R.id.recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
         recyclerView.setAdapter(new SiteAdapter(requireContext(), sites));
+
+        Log.d("on create view : ********************","Initialisation de on CreateView ");
+        Log.d("Taille liste après on createView : ********************","Taille "+sites.size());
 
         return view;
     }
@@ -93,9 +91,9 @@ public class HomeFragment extends Fragment {
                     sites.add(site);
                 }
             }
-
             @Override
             public void onFailure(Throwable error) {
+                Log.d("Error : ********************", String.valueOf(error));
 //                homeActivity.runOnUiThread(new Runnable() {
 //                    @Override
 //                    public void run() {
