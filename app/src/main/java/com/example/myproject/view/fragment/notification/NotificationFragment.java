@@ -2,7 +2,6 @@ package com.example.myproject.view.fragment.notification;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
-import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -12,19 +11,16 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.example.myproject.HomeActivity;
 import com.example.myproject.R;
 import com.example.myproject.controller.EventController;
 import com.example.myproject.controller.EventSiteCallback;
 import com.example.myproject.model.Event;
-import com.example.myproject.view.fragment.home.SiteAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

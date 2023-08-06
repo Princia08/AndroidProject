@@ -15,7 +15,6 @@ import com.example.myproject.R;
 import com.example.myproject.controller.EventController;
 import com.example.myproject.controller.EventSiteCallback;
 import com.example.myproject.model.Event;
-import com.example.myproject.view.fragment.home.SiteAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
