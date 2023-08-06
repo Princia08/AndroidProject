@@ -1,8 +1,4 @@
-<<<<<<<< Updated upstream:app/src/main/java/com/example/myproject/view/fragment/home/SiteAdapter.java
-package com.example.myproject.view.fragment.home;
-========
 package com.example.myproject.vieww.fragmentt;
->>>>>>>> Stashed changes:app/src/main/java/com/example/myproject/vieww/fragmentt/SiteAdapter.java
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;

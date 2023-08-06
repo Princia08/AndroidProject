@@ -1,8 +1,4 @@
-<<<<<<<< Updated upstream:app/src/main/java/com/example/myproject/view/fragment/notification/NotifAdapter.java
-package com.example.myproject.view.fragment.notification;
-========
 package com.example.myproject.vieww.fragmentt;
->>>>>>>> Stashed changes:app/src/main/java/com/example/myproject/vieww/fragmentt/NotifAdapter.java
 
 import android.content.Context;
 import android.view.LayoutInflater;

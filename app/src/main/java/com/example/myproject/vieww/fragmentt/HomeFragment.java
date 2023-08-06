@@ -1,8 +1,4 @@
-<<<<<<<< Updated upstream:app/src/main/java/com/example/myproject/view/fragment/home/HomeFragment.java
-package com.example.myproject.view.fragment.home;
-========
 package com.example.myproject.vieww.fragmentt;
->>>>>>>> Stashed changes:app/src/main/java/com/example/myproject/vieww/fragmentt/HomeFragment.java
 
 import android.os.Bundle;
 
@@ -13,11 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-<<<<<<<< Updated upstream:app/src/main/java/com/example/myproject/view/fragment/home/HomeFragment.java
 import android.widget.Toast;
-========
->>>>>>>> Stashed changes:app/src/main/java/com/example/myproject/vieww/fragmentt/HomeFragment.java
-
 import com.example.myproject.R;
 import com.example.myproject.controller.SiteController;
 import com.example.myproject.controller.SiteListCallback;

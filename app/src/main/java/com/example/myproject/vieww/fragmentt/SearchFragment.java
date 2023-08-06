@@ -1,8 +1,4 @@
-<<<<<<<< Updated upstream:app/src/main/java/com/example/myproject/view/fragment/search/SearchFragment.java
-package com.example.myproject.view.fragment.search;
-========
 package com.example.myproject.vieww.fragmentt;
->>>>>>>> Stashed changes:app/src/main/java/com/example/myproject/vieww/fragmentt/SearchFragment.java
 
 import android.os.Bundle;
 

@@ -1,8 +1,4 @@
-<<<<<<<< Updated upstream:app/src/main/java/com/example/myproject/view/fragment/notification/NotificationFragment.java
-package com.example.myproject.view.fragment.notification;
-========
 package com.example.myproject.vieww.fragmentt;
->>>>>>>> Stashed changes:app/src/main/java/com/example/myproject/vieww/fragmentt/NotificationFragment.java
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -28,7 +24,7 @@ import com.example.myproject.R;
 import com.example.myproject.controller.EventController;
 import com.example.myproject.controller.EventSiteCallback;
 import com.example.myproject.model.Event;
-import com.example.myproject.view.fragment.home.SiteAdapter;
+import com.example.myproject.vieww.fragmentt.SiteAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
