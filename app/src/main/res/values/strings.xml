@@ -5,4 +5,37 @@
     <string name="close_nav">Close Navigation</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="about_paragraph">
+        <![CDATA[
+           "Copyright © 2023 MadagascarExplorer. Tous droits réservés.
+
+Bienvenue sur MadagascarExplorer, votre compagnon numérique pour découvrir les trésors cachés de Madagascar, la perle de l'Océan Indien. Notre application vous offre une expérience immersive unique, conçue pour les voyageurs avides d'aventures, de culture et de paysages à couper le souffle.
+
+Notre Mission :
+Chez MadagascarExplorer, notre mission est de vous guider à travers les merveilles naturelles et culturelles de Madagascar. Nous souhaitons partager notre passion pour cette île enchanteresse en vous proposant des informations fiables et complètes sur les lieux incontournables, les activités inédites et les événements à ne pas manquer.
+
+Caractéristiques Clés :
+
+Exploration Interactive - Plongez-vous dans une exploration interactive des sites touristiques les plus prisés et des joyaux cachés de Madagascar. Notre application vous offre des itinéraires personnalisés, adaptés à vos préférences, afin de vous assurer une expérience enrichissante et inoubliable.
+
+Informations Précieuses - Profitez d'informations précieuses sur les lieux touristiques, la faune et la flore locales, ainsi que sur l'héritage culturel unique de Madagascar. Nous vous offrons des descriptions détaillées et des images captivantes pour vous inspirer avant même votre départ.
+
+Recommandations Locales - Bénéficiez des recommandations authentiques émanant des habitants de Madagascar eux-mêmes. Découvrez les meilleurs restaurants, les boutiques d'artisanat local, les activités traditionnelles et les événements culturels pour une immersion complète dans la vie malgache.
+
+Fonctionnalités Hors-Ligne - Profitez de notre application même sans connexion Internet. Téléchargez les cartes, les itinéraires et les informations essentielles à l'avance, pour que votre aventure se déroule en toute tranquillité.
+
+Nous sommes passionnés par Madagascar et souhaitons partager notre amour pour cette destination exotique avec le monde entier. En utilisant MadagascarExplorer, vous contribuez également à soutenir les initiatives locales de conservation de l'environnement et de préservation de la culture.
+
+Remarque sur les droits d'auteur :
+Toutes les images et le contenu utilisés dans cette application sont la propriété de MadagascarExplorer ou de tiers ayant accordé les autorisations nécessaires. Toute reproduction, distribution ou utilisation non autorisée du contenu de cette application est strictement interdite.
+
+Rejoignez-nous dans cette aventure exceptionnelle à Madagascar et découvrez la magie de cette île enchanteresse. Téléchargez MadagascarExplorer dès aujourd'hui et commencez à planifier votre voyage de rêve !
+
+Pour toute question ou commentaire, veuillez nous contacter à l'adresse suivante : contact@madagascarexplorer.com.
+
+Bon voyage,
+
+L'équipe MadagascarExplorer"
+            ]]>
+    </string>
 </resources>

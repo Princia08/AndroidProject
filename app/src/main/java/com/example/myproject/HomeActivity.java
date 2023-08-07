@@ -15,6 +15,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.app.Dialog;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
@@ -29,11 +30,12 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 //import com.example.myproject.view.fragment.calendar.CalendarFragment;
-import com.example.myproject.view.fragment.calendar.CalendarFragment;
-import com.example.myproject.view.fragment.home.HomeFragment;
-import com.example.myproject.view.fragment.notification.NotificationFragment;
-import com.example.myproject.view.fragment.search.SearchFragment;
-import com.example.myproject.view.fragment.settings.SettingsFragment;
+import com.example.myproject.vieww.fragment.about.AboutFragment;
+import com.example.myproject.vieww.fragment.calendar.CalendarFragment;
+import com.example.myproject.vieww.fragment.home.HomeFragment;
+import com.example.myproject.vieww.fragment.notification.NotificationFragment;
+import com.example.myproject.vieww.fragment.search.SearchFragment;
+import com.example.myproject.vieww.fragment.settings.SettingsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
@@ -63,12 +65,22 @@ public class HomeActivity extends AppCompatActivity {
                 if (itemId == R.id.nav_home) {
                         // Replace the current fragment with the SearchFragment
                         getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.frame_layout, new SearchFragment())
+                                .replace(R.id.frame_layout, new HomeFragment())
                                 .commit();
-                    }
-                    else if (itemId == R.id.nav_settings) {
-                        replaceFragment(new SettingsFragment());
-                    }
+                }
+                else if (itemId == R.id.nav_settings) {
+                    replaceFragment(new SettingsFragment());
+                }
+                else if (itemId == R.id.nav_share) {
+                    replaceFragment(new CalendarFragment());
+                }
+                else if (itemId == R.id.nav_about) {
+                    replaceFragment(new AboutFragment());
+                }
+                else if (itemId == R.id.nav_logout) {
+                    Intent intent = new Intent(HomeActivity.this, MainActivity.class);
+                    startActivity(intent);
+                }
 
                 // Highlight the selected item as checked
                 item.setChecked(true);
@@ -82,7 +94,6 @@ public class HomeActivity extends AppCompatActivity {
 
         // Set the default selected item when the activity is created
         if (savedInstanceState == null) {
-            System.out.println("savedInstanceState null");
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.frame_layout, new SearchFragment())
                     .commit();

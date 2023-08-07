@@ -1,4 +1,4 @@
-package com.example.myproject.view.fragment.settings;
+package com.example.myproject.vieww.fragment.settings;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -98,6 +98,6 @@ public class SettingsFragment extends Fragment {
     private void applyTheme(boolean isDarkMode) {
         int nightMode = isDarkMode ? AppCompatDelegate.MODE_NIGHT_YES : AppCompatDelegate.MODE_NIGHT_NO;
         AppCompatDelegate.setDefaultNightMode(nightMode);
-        requireActivity().recreate(); // Recreate the activity only when the user interacts with the switch
+       // requireActivity().recreate(); // Recreate the activity only when the user interacts with the switch
     }
 }
