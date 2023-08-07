@@ -66,7 +66,7 @@ public class EventController {
     }
 
     public void getAll(EventSiteCallback callback) {
-        String apiUrl = "http://172.22.12.236:8080/api/event";
+        String apiUrl = baseUrl+"/event";
 
         Request request = new Request.Builder()
                 .url(apiUrl)

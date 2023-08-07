@@ -1,10 +1,12 @@
 package com.example.myproject;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -13,11 +15,13 @@ import androidx.fragment.app.FragmentTransaction;
 import android.app.Dialog;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -26,10 +30,12 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 //import com.example.myproject.view.fragment.calendar.CalendarFragment;
-import com.example.myproject.view.fragment.calendar.CalendarFragment;
-import com.example.myproject.view.fragment.home.HomeFragment;
-import com.example.myproject.view.fragment.notification.NotificationFragment;
-import com.example.myproject.view.fragment.search.SearchFragment;
+import com.example.myproject.vieww.SettingsActivity;
+import com.example.myproject.vieww.fragment.calendar.CalendarFragment;
+import com.example.myproject.vieww.fragment.home.HomeFragment;
+import com.example.myproject.vieww.fragment.notification.NotificationFragment;
+import com.example.myproject.vieww.fragment.search.SearchFragment;
+import com.example.myproject.vieww.fragment.settings.SettingsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
@@ -47,19 +53,49 @@ public class HomeActivity extends AppCompatActivity {
 
         NavigationView navigationView = findViewById(R.id.nav_view);
 
+        // Set the default selected item (Accueil) when the activity is created
+        navigationView.setCheckedItem(R.id.nav_home);
+
+        navigationView.bringToFront();
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                // Handle menu item click here
+                int itemId = item.getItemId();
+                if (itemId == R.id.nav_home) {
+                        // Replace the current fragment with the SearchFragment
+                        getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.frame_layout, new SearchFragment())
+                                .commit();
+                    }
+                    else if (itemId == R.id.nav_settings) {
+                        replaceFragment(new SettingsFragment());
+                    }
+
+                // Highlight the selected item as checked
+                item.setChecked(true);
+                // Close the navigation drawer after the item is clicked
+                DrawerLayout drawer = findViewById(R.id.drawer_layout);
+                drawer.closeDrawer(GravityCompat.START);
+
+                return true;
+            }
+        });
+
+        // Set the default selected item when the activity is created
         if (savedInstanceState == null) {
-            getSupportFragmentManager()
-                    .beginTransaction()
+            System.out.println("savedInstanceState null");
+            getSupportFragmentManager().beginTransaction()
                     .replace(R.id.frame_layout, new SearchFragment())
                     .commit();
-            navigationView.setCheckedItem(R.id.nav_home);
+            //navigationView.setCheckedItem(R.id.nav_home);
         }
 
         init();
         setBottomNavigation();
         pushNotification();
-
     }
+
     public void pushNotification(){
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
             NotificationChannel channel =  new NotificationChannel("My Notification","My Notification", NotificationManager.IMPORTANCE_DEFAULT);

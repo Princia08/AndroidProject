@@ -1,4 +1,4 @@
-package com.example.myproject.view.fragment.notification;
+package com.example.myproject.vieww.fragment.notification;
 
 import android.content.Context;
 import android.view.LayoutInflater;

@@ -10,10 +10,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.myproject.view.SignupActivity;
+import com.example.myproject.vieww.SignupActivity;
 import com.example.myproject.controller.LoginController;
 import com.example.myproject.model.LoginCallback;
 import com.example.myproject.model.UserModel;
+import com.example.myproject.vieww.SettingsActivity;
 
 public class MainActivity extends AppCompatActivity {
 

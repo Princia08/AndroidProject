@@ -133,7 +133,7 @@
         android:layout_marginEnd="151dp"
         android:text="Déjà un compte ?"
         android:textColor="#606060"
-        android:textColorLink="#673AB7"
+        android:textColorLink="@color/purple_color"
         android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"

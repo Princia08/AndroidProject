@@ -3,13 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.fragment.search.SearchFragment">
+    tools:context=".vieww.fragment.search.SearchFragment">
 
     <!-- TODO: Update blank fragment layout -->
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Recherche Fragment"
-        android:gravity="center"/>
+        android:gravity="center"
+        android:text="Recherche Fragment" />
 
 </FrameLayout>
