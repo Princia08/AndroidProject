@@ -1,5 +1,7 @@
 package com.example.myproject.controller;
 
+import android.util.Log;
+
 import com.example.myproject.model.BaseUrl;
 import com.example.myproject.model.Site;
 
@@ -56,6 +58,7 @@ public class SiteController {
 
                         callback.onSuccess(siteList);
                     } catch (Exception e) {
+                        Log.e("JSON Parsing Error", "Error parsing JSON: " + e.getMessage());
                         callback.onFailure(e);
                     }
                 } else {

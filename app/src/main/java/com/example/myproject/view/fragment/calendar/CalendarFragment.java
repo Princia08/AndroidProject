@@ -83,22 +83,27 @@ public class CalendarFragment extends Fragment {
                     );
                     events.add(event1);
                 }
-                getActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        updateAdapter();
-                    }
-                });
+                if (getActivity() != null) {
+                    requireActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            updateAdapter();
+                        }
+                    });
+                }
+
             }
 
             @Override
             public void onFailure(Throwable error) {
-                getActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                });
+                if (getActivity() != null) {
+                    requireActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(requireActivity(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
             }
         });
     }

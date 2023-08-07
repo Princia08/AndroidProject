@@ -85,22 +85,27 @@ public class HomeFragment extends Fragment {
                     );
                     sites.add(site);
                 }
-                getActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        updateAdapter();
-                    }
-                });
+                if (getActivity() != null) {
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            updateAdapter();
+                        }
+                    });
+                }
             }
 
             @Override
             public void onFailure(Throwable error) {
-                getActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                });
+                if (getActivity() != null) {
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+
             }
         });
     }

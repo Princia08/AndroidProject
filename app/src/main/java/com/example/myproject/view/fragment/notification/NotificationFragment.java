@@ -91,32 +91,38 @@ public class NotificationFragment extends Fragment {
                     );
                     events.add(event1);
                 }
-                getActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        updateAdapter();
-                    }
-                });
+                if (getActivity() != null) {
+                    requireActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            updateAdapter();
+                        }
+                    });
+                }
+
             }
 
             @Override
             public void onFailure(Throwable error) {
-                getActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                });
+                if (getActivity() != null) {
+                    requireActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
             }
         });
     }
 
     private void updateAdapter() {
         if (getActivity() != null) {
-            NotifAdapter adapter = new NotifAdapter(requireContext(),events);
+            NotifAdapter adapter = new NotifAdapter(requireContext(), events);
             recyclerView.setAdapter(adapter);
         }
     }
+
     public void pushNotification() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationChannel channel = new NotificationChannel("My Notification", "My Notification", NotificationManager.IMPORTANCE_DEFAULT);

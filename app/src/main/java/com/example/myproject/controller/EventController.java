@@ -1,5 +1,6 @@
 package com.example.myproject.controller;
 
+import android.util.Log;
 import android.view.inputmethod.InputMethodSession;
 
 import com.example.myproject.model.BaseUrl;
@@ -21,10 +22,10 @@ import okhttp3.Response;
 
 public class EventController {
     OkHttpClient client = new OkHttpClient();
-    String baseUrl=new BaseUrl().getValue();
+    String baseUrl = new BaseUrl().getValue();
 
     public void getEventTomorrow(EventSiteCallback callback) {
-        String apiUrl = baseUrl+"/event/tomorrow";
+        String apiUrl = baseUrl + "/event/tomorrow";
 
         Request request = new Request.Builder()
                 .url(apiUrl)
@@ -56,6 +57,7 @@ public class EventController {
 
                         callback.onSuccess(eventList);
                     } catch (Exception e) {
+                        Log.e("JSON Parsing Error", "Error parsing JSON: " + e.getMessage());
                         callback.onFailure(e);
                     }
                 } else {
@@ -66,7 +68,7 @@ public class EventController {
     }
 
     public void getAll(EventSiteCallback callback) {
-        String apiUrl = baseUrl+"/event";
+        String apiUrl = baseUrl + "/event";
 
         Request request = new Request.Builder()
                 .url(apiUrl)
@@ -98,6 +100,7 @@ public class EventController {
 
                         callback.onSuccess(eventList);
                     } catch (Exception e) {
+                        Log.e("JSON Parsing Error", "Error parsing JSON: " + e.getMessage());
                         callback.onFailure(e);
                     }
                 } else {
