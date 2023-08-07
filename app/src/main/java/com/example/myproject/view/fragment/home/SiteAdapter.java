@@ -1,4 +1,4 @@
-package com.example.myproject.vieww.fragment.home;
+package com.example.myproject.view.fragment.home;
 
 import android.content.Context;
 import android.util.Log;
