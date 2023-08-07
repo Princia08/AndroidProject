@@ -1,4 +1,4 @@
-package com.example.myproject.vieww.fragment.settings;
+package com.example.myproject.view.fragment.settings;
 
 import android.content.Context;
 import android.content.SharedPreferences;

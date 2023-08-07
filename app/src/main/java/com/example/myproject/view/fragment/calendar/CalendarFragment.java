@@ -1,12 +1,7 @@
-package com.example.myproject.vieww.fragment.notification;
+package com.example.myproject.view.fragment.calendar;
 
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.os.Build;
 import android.os.Bundle;
 
-import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.myproject.R;
@@ -27,10 +21,10 @@ import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link NotificationFragment#newInstance} factory method to
+ * Use the {@link CalendarFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class NotificationFragment extends Fragment {
+public class CalendarFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -40,16 +34,16 @@ public class NotificationFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    private Button notifyBtn;
+
     EventController eventController = new EventController();
     List<Event> events = new ArrayList<>();
     RecyclerView recyclerView;
 
-    public NotificationFragment() {
+    public CalendarFragment() {
     }
 
-    public static NotificationFragment newInstance(String param1, String param2) {
-        NotificationFragment fragment = new NotificationFragment();
+    public static CalendarFragment newInstance(String param1, String param2) {
+        CalendarFragment fragment = new CalendarFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -69,18 +63,16 @@ public class NotificationFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        initEventTomorrow();
-
-        View view = inflater.inflate(R.layout.fragment_notification, container, false);
-        recyclerView = view.findViewById(R.id.recyclerview_notifications);
+        initAllCalendar();
+        View view = inflater.inflate(R.layout.fragment_calendar, container, false);
+        recyclerView = view.findViewById(R.id.recyclerview_calendrier);
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
-        recyclerView.setAdapter(new NotifAdapter(requireContext(), events));
-
+        recyclerView.setAdapter(new CalendarAdapter(requireContext(), events));
         return view;
     }
 
-    public void initEventTomorrow() {
-        eventController.getEventTomorrow(new EventSiteCallback() {
+    public void initAllCalendar() {
+        eventController.getAll(new EventSiteCallback() {
             @Override
             public void onSuccess(List<Event> fecthedEvents) {
                 for (Event event : fecthedEvents) {
@@ -113,25 +105,8 @@ public class NotificationFragment extends Fragment {
 
     private void updateAdapter() {
         if (getActivity() != null) {
-            NotifAdapter adapter = new NotifAdapter(requireContext(),events);
+            CalendarAdapter adapter = new CalendarAdapter(requireContext(), events);
             recyclerView.setAdapter(adapter);
         }
     }
-    public void pushNotification() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            NotificationChannel channel = new NotificationChannel("My Notification", "My Notification", NotificationManager.IMPORTANCE_DEFAULT);
-            NotificationManager notificationManager = requireContext().getSystemService(NotificationManager.class);
-            notificationManager.createNotificationChannel(channel);
-        }
-
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(getContext(), "My Notification");
-        builder.setContentTitle("Mada Travel");
-        builder.setContentText("De ahona zanjy");
-        builder.setSmallIcon(R.drawable.baseline_event_available_24);
-        builder.setAutoCancel(true);
-
-        NotificationManagerCompat notificationCompat = NotificationManagerCompat.from(getContext());
-        notificationCompat.notify(1, builder.build());
-    }
-
 }

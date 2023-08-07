@@ -1,4 +1,4 @@
-package com.example.myproject.vieww.fragment.search;
+package com.example.myproject.view.fragment.search;
 
 import android.os.Bundle;
 

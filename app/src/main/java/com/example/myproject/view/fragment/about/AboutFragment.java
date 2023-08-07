@@ -1,4 +1,4 @@
-package com.example.myproject.vieww.fragment.about;
+package com.example.myproject.view.fragment.about;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
